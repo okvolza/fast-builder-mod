@@ -1,4 +1,6 @@
 {
   "type": "ItemBridge",
-  "maxLength": 40
+  "maxLength": 40,
+  "laserRange": 40,
+  "maxTransport": 40
 }
