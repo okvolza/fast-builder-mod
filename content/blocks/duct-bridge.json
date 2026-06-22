@@ -1,4 +1,5 @@
 {
   "type": "DuctBridge",
-  "maxLength": 40
+  "maxLength": 40,
+  "laserRange": 40
 }
