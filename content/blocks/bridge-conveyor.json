@@ -1,0 +1,6 @@
+{
+  "range": 40,
+  "itemCapacity": 150,
+  "speed": 0.005,
+  "bufferCapacity": 100
+}
