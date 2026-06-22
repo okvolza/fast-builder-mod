@@ -1,0 +1,8 @@
+{
+  "name": "fast-builder",
+  "displayName": "Fast Builder Mod",
+  "author": "YourName",
+  "description": "เพิ่มความเร็วในการสร้างสิ่งก่อสร้างของตัวละคร (ทุกดาว)",
+  "version": "1.0",
+  "minGameVersion": "145"
+}
