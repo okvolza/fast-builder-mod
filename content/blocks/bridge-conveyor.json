@@ -1,4 +1,4 @@
 {
   "type": "ItemBridge",
-  "range": 40
+  "maxLength": 40
 }
