@@ -4,7 +4,6 @@ Events.on(ClientLoadEvent, () => {
     if (itemBridge != null) {
         itemBridge.range = 100;
         itemBridge.itemCapacity = 100;
-        itemBridge.allOutputs = true; // 🌟 ปลดล็อกให้ปลายทางปล่อยไอเทมออกได้รอบตัว (4 ทิศ)
     }
 
     // สะพานของเหลว
