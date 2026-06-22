@@ -1,7 +1,15 @@
 Events.on(ClientLoadEvent, () => {
-    const bridge = Vars.content.getByName(ContentType.block, "bridge-conveyor");
-    if (bridge != null) {
-        bridge.range = 100;        // ยาว 100 ช่อง
-        bridge.itemCapacity = 100; // จุ 100 ไอเทม
+    // สะพานไอเทม
+    const itemBridge = Vars.content.getByName(ContentType.block, "bridge-conveyor");
+    if (itemBridge != null) {
+        itemBridge.range = 100;
+        itemBridge.itemCapacity = 100;
+    }
+
+    // สะพานของเหลว
+    const liquidBridge = Vars.content.getByName(ContentType.block, "bridge-conduit");
+    if (liquidBridge != null) {
+        liquidBridge.range = 100;        // ยาว 100 ช่อง
+        liquidBridge.liquidCapacity = 100; // จุของเหลว 100 หน่วย
     }
 });
