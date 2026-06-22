@@ -1,4 +1,4 @@
 {
   "type": "DuctBridge",
-  "range": 40
+  "maxLength": 40
 }
