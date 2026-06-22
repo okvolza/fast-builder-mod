@@ -1,7 +1,0 @@
-{
-  "maxLength": 40,
-  "laserRange": 40,
-  "maxTransport": 40,
-  "hasPower": false,
-  "conductivePower": true
-}
