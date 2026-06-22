@@ -1,1 +1,1 @@
-{ "type": "LiquidBridge", "range": 40 }
+{ "type": "LiquidBridge", "maxLength": 40 }
