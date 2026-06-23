@@ -1,16 +1,28 @@
 Events.on(ClientLoadEvent, () => {
-    // 1. สะพานไอเทม (ยาว 100 / จุ 100 / ส่งไวปรี๊ด)
+    // ==========================================
+    // 1. สะพานไอเทม (Item Bridge)
+    // ==========================================
     const itemBridge = Vars.content.getByName(ContentType.block, "bridge-conveyor");
     if (itemBridge != null) {
-        itemBridge.range = 100;
-        itemBridge.itemCapacity = 100;
-        itemBridge.transportTime = 0.1; // ⚡ ยิ่งค่าน้อยยิ่งส่งไว! (0.1 คือเร็วขึ้นกว่าเดิมมหาศาล)
+        // --- ปรับสเปกการทำงานจริง ---
+        itemBridge.range = 100;              // ระยะส่งยาว 100 ช่อง
+        itemBridge.itemCapacity = 100;       // ความจุถังพัก 100 ไอเทม
+        itemBridge.transportTime = 0.01;     // เวลาวาร์ปไอเทมข้ามฝั่ง (ยิ่งน้อยยิ่งไว)
+        itemBridge.speed = 15.0;             // สปีดสายพาน เข้า-ออก (แก้คอขวด 11 ชิ้น/วิ)
+
+        // --- จัดหน้าต่างข้อมูล (Stats) ให้คลีนโชว์ค่าเดียว ---
+        itemBridge.stats.clear();            // ล้างค่าเก่าที่แสดงผลซ้อนทับออกให้หมด
+        itemBridge.setStats();               // ให้เกมวาดโครงสร้างตารางข้อมูลใหม่
+        itemBridge.stats.add(Stat.itemSpeed, 600, StatUnit.itemsPerSecond); // แสดงเลขความเร็วแบบเดี่ยวๆ สวยงาม
     }
 
-    // 2. สะพานของเหลว (ยาว 100 / จุ 100)
+    // ==========================================
+    // 2. สะพานของเหลว (Liquid Bridge)
+    // ==========================================
     const liquidBridge = Vars.content.getByName(ContentType.block, "bridge-conduit");
     if (liquidBridge != null) {
-        liquidBridge.range = 100;
-        liquidBridge.liquidCapacity = 100;
+        // --- ปรับสเปกการทำงานจริง ---
+        liquidBridge.range = 100;            // ระยะส่งยาว 100 ช่อง
+        liquidBridge.liquidCapacity = 100;   // ความจุถังพักของเหลว 100 หน่วย
     }
 });
