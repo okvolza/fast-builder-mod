@@ -1,0 +1,20 @@
+{
+  "type": "ItemBridge",
+  "name": "Super Bridge Conveyor",
+  "description": "สะพานไอเทมเวอร์ชันอัปเกรด ส่งไวทะลุนรก 600 ไอเท็ม/วินาที",
+  "health": 40,
+  "size": 1,
+  "range": 100,
+  "itemCapacity": 100,
+  "hasItems": true,
+  "configurable": true,
+  "requirements": [
+    { "item": "copper", "amount": 6 },
+    { "item": "lead", "amount": 6 }
+  ],
+  "category": "distribution",
+  "research": "bridge-conveyor",
+  
+  "bufferCapacity": 100,
+  "speed": 150.0
+}
