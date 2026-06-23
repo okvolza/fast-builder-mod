@@ -1,9 +1,10 @@
 Events.on(ClientLoadEvent, () => {
-    // 1. สะพานไอเทม (ยาว 100 / จุ 100)
+    // 1. สะพานไอเทม (ยาว 100 / จุ 100 / ส่งไวปรี๊ด)
     const itemBridge = Vars.content.getByName(ContentType.block, "bridge-conveyor");
     if (itemBridge != null) {
         itemBridge.range = 100;
         itemBridge.itemCapacity = 100;
+        itemBridge.transportTime = 0.1; // ⚡ ยิ่งค่าน้อยยิ่งส่งไว! (0.1 คือเร็วขึ้นกว่าเดิมมหาศาล)
     }
 
     // 2. สะพานของเหลว (ยาว 100 / จุ 100)
@@ -12,12 +13,4 @@ Events.on(ClientLoadEvent, () => {
         liquidBridge.range = 100;
         liquidBridge.liquidCapacity = 100;
     }
-
-    // 3. 🛡️ ขยายเพดานยูนิต (ดิน น้ำ อากาศ) โดยเพิ่มโควตาที่ตัวโรงงานแทน
-    Vars.content.blocks().each(b => {
-        // เช็คว่าถ้าเป็นโรงงานสร้างยูนิต หรือแท่นอัปเกรดสายยูนิต
-        if (b instanceof UnitFactory || b instanceof Reconstructor) {
-            b.unitCapModifier = 500; // สร้างโรงงานนี้ปุ๊บ ได้โควตายูนิตเพิ่มทันที 500 ตัว!
-        }
-    });
 });
