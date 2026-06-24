@@ -1,9 +1,5 @@
-// ดึงเส้นทางตรงจากระบบเกมเพื่อป้องกัน ReferenceError 100%
-const ClientLoadEvent = Packages.mindustry.game.EventType.ClientLoadEvent;
-
-Events.on(ClientLoadEvent, () => {
-    
-    // === ข้อ 1 และ ข้อ 3: ความเร็วสร้างของตัวละคร และ ขีดจำกัดยูนิตสูงสุด 500 ตัว ===
+try {
+    // === ข้อ 1 และ ข้อ 3: เพิ่มความเร็วตัวละครผู้เล่นตามระดับฐาน และขีดจำกัดยูนิตสูงสุด 500 ตัว ===
 
     // [ระดับเล็ก] ฐาน Shard และ ฐาน Bastion -> ความเร็วสร้าง 5.0
     if (Blocks.coreShard) {
@@ -36,7 +32,7 @@ Events.on(ClientLoadEvent, () => {
     }
 
 
-    // === ข้อ 2: ทำให้สะพานยาวขึ้น 50 ช่อง (ทั้งสายพานไอเทม และ ท่อน้ำของเหลว) ===
+    // === ข้อ 2: ทำให้สะพานยาวขึ้น 50 ช่อง (รวมทั้งสายพานไอเทม และ ท่อน้ำของเหลว ทุกดาว) ===
     const bridges = [
         Blocks.bridgeConveyor,       // สะพานสายพานปกติ
         Blocks.phaseBridgeConveyor,  // สะพานสายพานเฟส
@@ -47,8 +43,12 @@ Events.on(ClientLoadEvent, () => {
 
     bridges.forEach(b => {
         if (b != null) {
-            b.range = 50; // ปรับความยาวเป็น 50 ช่อง
+            b.range = 50; // ปรับความยาวสะพานเป็น 50 ช่อง
         }
     });
 
-});
+    Log.info("=== ม็อด 3 ฟังก์ชันรันสำเร็จเรียบร้อย! ===");
+
+} catch (err) {
+    Log.err("Mod Core Error: " + err);
+}
