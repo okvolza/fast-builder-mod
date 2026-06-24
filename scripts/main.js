@@ -1,43 +1,31 @@
 try {
     Events.on(ClientLoadEvent, () => {
         try {
-            // 1. ขยายระยะสะพานทุกชนิด (ไอเทม/ของเหลว/Phase) เป็น 100 ช่อง
+            // 1. เพิ่มความเร็วการสร้างของตัวละคร (ปรับตามระดับฐาน Core: 5.0, 7.5, 10.0)
+            // 3. เพิ่มขีดจำกัดยูนิต (Unit Cap) ของฐานเป็นสูงสุด 500 ตัว
+            const coreConfigs = [
+                { names: ["core-shard", "core-bastion"], speed: 5.0 },       // ระดับเล็ก (5.0)
+                { names: ["core-foundation", "core-citadel"], speed: 7.5 },  // ระดับกลาง (7.5)
+                { names: ["core-nucleus", "core-acropolis"], speed: 10.0 }   // ระดับใหญ่ (10.0)
+            ];
+
+            coreConfigs.forEach(cfg => {
+                cfg.names.forEach(name => {
+                    let core = Vars.content.getByName(ContentType.block, name);
+                    if (core != null) {
+                        core.buildSpeed = cfg.speed;       // ความเร็วการสร้าง
+                        core.unitCapModifier = 500;       // ขีดจำกัดยูนิตสูงสุด 500 ตัว
+                    }
+                });
+            });
+
+            // 2. ทำให้สะพานยาวขึ้น 50 ช่อง (รวมทั้งสายพานลำเลียงไอเทม และท่อน้ำของเหลว)
             const bridges = ["bridge-conveyor", "phase-bridge-conveyor", "bridge-conduit", "phase-conduit"];
             bridges.forEach(name => {
                 let b = Vars.content.getByName(ContentType.block, name);
-                if (b) b.range = 100;
-            });
-
-            // 2. ปรับความเร็วสร้างฐาน + ความจุไอเทม + ปลดล็อกยูนิต 2000 ตัว (สัมพันธ์ตามระดับ)
-            const cores = [
-                { name: "core-shard", speed: 5.0, capacity: 10000 },
-                { name: "core-bastion", speed: 5.0, capacity: 10000 },
-                { name: "core-foundation", speed: 7.5, capacity: 20000 },
-                { name: "core-citadel", speed: 7.5, capacity: 20000 },
-                { name: "core-nucleus", speed: 10.0, capacity: 30000 },
-                { name: "core-acropolis", speed: 10.0, capacity: 40000 }
-            ];
-
-            cores.forEach(c => {
-                let core = Vars.content.getByName(ContentType.block, c.name);
-                if (core) {
-                    core.unitCapModifier = 2000;
-                    core.buildSpeed = c.speed;
-                    core.itemCapacity = c.capacity;
+                if (b != null) {
+                    b.range = 50;
                 }
-            });
-
-            // 3. ปรับความจุของคลังเก็บข้อมูลไอเทม (Storage Blocks) ทั้ง 2 ดาว
-            const storages = [
-                { name: "container", capacity: 5000 },
-                { name: "reinforced-container", capacity: 5000 },
-                { name: "vault", capacity: 20000 },
-                { name: "reinforced-vault", capacity: 30000 }
-            ];
-
-            storages.forEach(s => {
-                let storage = Vars.content.getByName(ContentType.block, s.name);
-                if (storage) storage.itemCapacity = s.capacity;
             });
 
         } catch (loadErr) {
