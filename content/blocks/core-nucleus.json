@@ -1,4 +1,5 @@
-{ "type": "CoreBlock", "buildSpeed": 5.0 }
 {
+  "type": "CoreBlock",
+  "buildSpeed": 5.0,
   "unitCapModifier": 2000
 }
