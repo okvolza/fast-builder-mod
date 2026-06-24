@@ -1,33 +1,34 @@
-Events.on(ClientLoadEvent, () => {
-    // ==========================================
-    // 📦 ฝั่งไอเทม (Item Bridges)
-    // ==========================================
-    
-    // 1. สะพานไอเทมธรรมดา
-    const itemBridge = Vars.content.getByName(ContentType.block, "bridge-conveyor");
-    if (itemBridge != null) {
-        itemBridge.range = 100;
-    }
+try {
+    Events.on(ClientLoadEvent, () => {
+        try {
+            // 1. ขยายระยะสะพานทุกชนิด (ไอเทม/ของเหลว) เป็น 100 ช่อง
+            const bridges = ["bridge-conveyor", "phase-bridge-conveyor", "bridge-conduit", "phase-conduit"];
+            bridges.forEach(name => {
+                let b = Vars.content.getByName(ContentType.block, name);
+                if (b) b.range = 100;
+            });
 
-    // 2. สะพานไอเทมระยะไกล (ตัวอัปเกรด Phase)
-    const phaseBridge = Vars.content.getByName(ContentType.block, "phase-bridge-conveyor");
-    if (phaseBridge != null) {
-        phaseBridge.range = 100;
-    }
+            // 2. ปรับความเร็วสร้างฐานทั้ง 2 ดาว + ปลดล็อกยูนิตเป็น 2000 ตัว
+            const coreConfigs = [
+                { names: ["core-shard", "core-bastion"], speed: 5.0 },       // ฐานเล็ก ทั้ง 2 ดาว
+                { names: ["core-foundation", "core-citadel"], speed: 7.5 },  // ฐานกลาง ทั้ง 2 ดาว
+                { names: ["core-nucleus", "core-acropolis"], speed: 10.0 }   // ฐานใหญ่ ทั้ง 2 ดาว
+            ];
 
-    // ==========================================
-    // 💧 ฝั่งของเหลว (Liquid Bridges)
-    // ==========================================
-    
-    // 3. สะพานของเหลวธรรมดา
-    const liquidBridge = Vars.content.getByName(ContentType.block, "bridge-conduit");
-    if (liquidBridge != null) {
-        liquidBridge.range = 100;
-    }
+            coreConfigs.forEach(cfg => {
+                cfg.names.forEach(name => {
+                    let core = Vars.content.getByName(ContentType.block, name);
+                    if (core) {
+                        core.unitCapModifier = 2000; 
+                        core.buildSpeed = cfg.speed; 
+                    }
+                });
+            });
 
-    // 4. สะพานของเหลวระยะไกล (ตัวอัปเกรด Phase)
-    const phaseConduit = Vars.content.getByName(ContentType.block, "phase-conduit");
-    if (phaseConduit != null) {
-        phaseConduit.range = 100;
-    }
-});
+        } catch (loadErr) {
+            Log.err("Mod Load Error: " + loadErr);
+        }
+    });
+} catch (globalErr) {
+    Log.err("Global Mod Error: " + globalErr);
+}
