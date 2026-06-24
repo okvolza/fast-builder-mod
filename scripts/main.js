@@ -1,37 +1,49 @@
-try {
-    Events.on(ClientLoadEvent, () => {
-        try {
-            // 1. เพิ่มความเร็วการสร้างของตัวละคร (ปรับตามระดับฐาน Core: 5.0, 7.5, 10.0)
-            // 3. เพิ่มขีดจำกัดยูนิต (Unit Cap) ของฐานเป็นสูงสุด 500 ตัว
-            const coreConfigs = [
-                { names: ["core-shard", "core-bastion"], speed: 5.0 },       // ระดับเล็ก (5.0)
-                { names: ["core-foundation", "core-citadel"], speed: 7.5 },  // ระดับกลาง (7.5)
-                { names: ["core-nucleus", "core-acropolis"], speed: 10.0 }   // ระดับใหญ่ (10.0)
-            ];
+Events.on(ClientLoadEvent, () => {
+    // === ข้อ 1 และ ข้อ 3: เพิ่มความเร็วตัวละครผู้เล่นตามระดับฐาน และปรับขีดจำกัดยูนิตเป็น 500 ===
 
-            coreConfigs.forEach(cfg => {
-                cfg.names.forEach(name => {
-                    let core = Vars.content.getByName(ContentType.block, name);
-                    if (core != null) {
-                        core.buildSpeed = cfg.speed;       // ความเร็วการสร้าง
-                        core.unitCapModifier = 500;       // ขีดจำกัดยูนิตสูงสุด 500 ตัว
-                    }
-                });
-            });
+    // [ระดับเล็ก] ฐาน Shard (Serpulo) และ ฐาน Bastion (Erekir) -> ความเร็วสร้าง 5.0
+    if (Blocks.coreShard) {
+        Blocks.coreShard.unitCapModifier = 500;
+        if (Blocks.coreShard.unitType) Blocks.coreShard.unitType.buildSpeed = 5.0;
+    }
+    if (Blocks.coreBastion) {
+        Blocks.coreBastion.unitCapModifier = 500;
+        if (Blocks.coreBastion.unitType) Blocks.coreBastion.unitType.buildSpeed = 5.0;
+    }
 
-            // 2. ทำให้สะพานยาวขึ้น 50 ช่อง (รวมทั้งสายพานลำเลียงไอเทม และท่อน้ำของเหลว)
-            const bridges = ["bridge-conveyor", "phase-bridge-conveyor", "bridge-conduit", "phase-conduit"];
-            bridges.forEach(name => {
-                let b = Vars.content.getByName(ContentType.block, name);
-                if (b != null) {
-                    b.range = 50;
-                }
-            });
+    // [ระดับกลาง] ฐาน Foundation (Serpulo) และ ฐาน Citadel (Erekir) -> ความเร็วสร้าง 7.5
+    if (Blocks.coreFoundation) {
+        Blocks.coreFoundation.unitCapModifier = 500;
+        if (Blocks.coreFoundation.unitType) Blocks.coreFoundation.unitType.buildSpeed = 7.5;
+    }
+    if (Blocks.coreCitadel) {
+        Blocks.coreCitadel.unitCapModifier = 500;
+        if (Blocks.coreCitadel.unitType) Blocks.coreCitadel.unitType.buildSpeed = 7.5;
+    }
 
-        } catch (loadErr) {
-            Log.err("Mod Load Error: " + loadErr);
+    // [ระดับใหญ่] ฐาน Nucleus (Serpulo) และ ฐาน Acropolis (Erekir) -> ความเร็วสร้าง 10.0
+    if (Blocks.coreNucleus) {
+        Blocks.coreNucleus.unitCapModifier = 500;
+        if (Blocks.coreNucleus.unitType) Blocks.coreNucleus.unitType.buildSpeed = 10.0;
+    }
+    if (Blocks.coreAcropolis) {
+        Blocks.coreAcropolis.unitCapModifier = 500;
+        if (Blocks.coreAcropolis.unitType) Blocks.coreAcropolis.unitType.buildSpeed = 10.0;
+    }
+
+
+    // === ข้อ 2: ทำให้สะพานยาวขึ้น 50 ช่อง (ครอบคลุมทั้งของแข็งและของเหลว ทั้งสองดาว) ===
+    const bridges = [
+        Blocks.bridgeConveyor,       // สะพานสายพานลำเลียงไอเทมปกติ
+        Blocks.phaseBridgeConveyor,  // สะพานสายพานเฟส (Phase)
+        Blocks.ductBridge,           // สะพานท่อลำเลียงไอเทมดาวเอระคีย์ (Duct)
+        Blocks.bridgeConduit,        // สะพานท่อน้ำ/ของเหลวปกติ
+        Blocks.phaseConduit          // สะพานท่อน้ำเฟส (Phase)
+    ];
+
+    bridges.forEach(b => {
+        if (b != null) {
+            b.range = 50; // ปรับระยะความยาวสะพานเป็น 50 ช่อง
         }
     });
-} catch (globalErr) {
-    Log.err("Global Mod Error: " + globalErr);
-}
+});
