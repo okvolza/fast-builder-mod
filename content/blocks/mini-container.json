@@ -1,13 +1,18 @@
 {
   "type": "StorageBlock",
   "name": "ถังเก็บของจิ๋ว",
-  "description": "เก็บของขนาด 1x1 ราคาถูกลงครึ่งหนึ่ง",
+  "description": "เก็บของขนาด 1x1 สเปคและราคาลดลงครึ่งหนึ่งจากตู้เก็บของเดิม",
   "size": 1,
-  "health": 220,
-  "itemCapacity": 300,
+  "health": 110,
+  "itemCapacity": 150,
   "category": "effect",
   "requirements": [
-    "titanium/50"
+    { "item": "titanium", "amount": 50 }
   ],
-  "research": "container"
+  "research": {
+    "parent": "container",
+    "requirements": [
+      { "item": "titanium", "amount": 250 }
+    ]
+  }
 }
