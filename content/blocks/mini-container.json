@@ -1,0 +1,14 @@
+{
+  "type": "StorageBlock",
+  "name": "ถังเก็บของจิ๋ว",
+  "description": "เก็บไอเท็มแต่ละชนิดได้นิดหน่อย ขนาดกะทัดรัด 1x1 ราคาถูกลงครึ่งหนึ่ง",
+  "size": 1,
+  "health": 220,
+  "itemCapacity": 300,
+  "hasItems": true,
+  "requirements": [
+    "titanium/50"
+  ],
+  "category": "effect",
+  "buildTime": 100
+}
