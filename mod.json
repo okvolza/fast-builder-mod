@@ -1,8 +1,8 @@
 {
   "name": "fast-builder-mod",
-  "displayName": "Fast Builder & Mini Storage",
+  "displayName": "Hyper Build & Micro Storage",
   "author": "okvolza",
-  "description": "ม็อดช่วยให้ยูนิตสร้างเร็วและเพิ่มตู้เก็บของจิ๋ว",
+  "description": "ม็อดเร่งความเร็วการสร้างของยูนิตฐาน (Build Speed Boost) สูงสุด 10 เท่า พร้อมเพิ่ม \"ถังเก็บของจิ๋ว\" ขนาด 1x1 สเปคสมดุลครึ่งหนึ่งจากตู้เดิม เหมาะสำหรับสายแคมเปญเดือดๆ!",
   "version": "1.0",
   "minGameVersion": "146"
 }
