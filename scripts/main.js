@@ -31,8 +31,23 @@ try {
         if (Blocks.coreAcropolis.unitType) Blocks.coreAcropolis.unitType.buildSpeed = 10.0;
     }
 
-    Log.info("=== ม็อดปรับความเร็วและยูนิตฐาน (เวอร์ชันเสถียร) ทำงานสำเร็จ! ===");
+    // === ปรับความยาวสะพานไอเทมและของเหลวเป็น 10 บล็อก ===
+    if (Blocks.bridgeConveyor) {
+        Blocks.bridgeConveyor.range = 10;
+    }
+    if (Blocks.phaseConveyor) {
+        Blocks.phaseConveyor.range = 10;
+    }
+    if (Blocks.bridgeConduit) {
+        Blocks.bridgeConduit.range = 10;
+    }
+    if (Blocks.phaseConduit) {
+        Blocks.phaseConduit.range = 10;
+    }
+
+    Log.info("=== มอดปรับความเร็วและยูนิตฐาน (เวอร์ชันรีเฟรช) ทำงานสำเร็จ! ===");
 
 } catch (err) {
     Log.err("Mod Core Error: " + err);
 }
+
