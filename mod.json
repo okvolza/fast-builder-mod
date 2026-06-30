@@ -1,8 +1,8 @@
 {
   "name": "fast-builder-mod",
-  "displayName": "Hyper Build",
+  "displayName": "Hyper Build & Long Bridge",
   "author": "okvolza",
-  "description": "ม็อดเร่งความเร็วการสร้างของยูนิตฐาน (Build Speed Boost) สูงสุด 10 เท่า เหมาะสำหรับสายแคมเปญเดือดๆ!",
-  "version": "1.0",
+  "description": "มอดเร่งความเร็วการสร้างของยูนิตฐาน (Build Speed Boost) สูงสุด 10 เท่า, ปรับขีดจำกัดยูนิตเป็น 500 ตัว และเพิ่มระยะสะพานลำเลียงไอเทม/ของเหลวยาวขึ้นเป็น 10 บล็อก!",
+  "version": "1.1",
   "minGameVersion": "146"
 }
