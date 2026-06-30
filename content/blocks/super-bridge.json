@@ -1,0 +1,15 @@
+{
+  "type": "ItemBridge",
+  "name": "Super Item Bridge",
+  "description": "สะพานลำเลียงไอเทมแบบพิเศษ ลากยาวได้สะใจถึง 10 บล็อก!",
+  "health": 40,
+  "range": 10,
+  "speed": 10,
+  "bufferCapacity": 20,
+  "requirements": [
+    { "item": "copper", "amount": 12 },
+    { "item": "lead", "amount": 12 }
+  ],
+  "category": "distribution",
+  "research": "bridge-conveyor"
+}
